@@ -9,4 +9,31 @@ document.addEventListener('DOMContentLoaded', () => {
     age.innerText = differenceInYears;
 });
 
-
+// Add rotating background images
+document.addEventListener('DOMContentLoaded', () => {
+    const imgCont = document.getElementById('img-cont');
+    const bgImgs = [
+        'assets/Bacon Gallete.webp',
+        'assets/Cookie 2.webp',
+        'assets/Blueberry cobler.webp',
+        'assets/Cookie.webp',
+        'assets/Fruit Gallete.webp'
+    ];
+    let imgY = 10;
+    const main = document.querySelector('main');
+    const mainH = main.clientHeight;
+    const windowH = window.innerHeight;
+    const bgImgCount = mainH / windowH * 3;
+    for(let i = 0; i < bgImgCount; i++) {
+        const bgImg = document.createElement('img');
+        const imgX = (Math.random() * 100) - 5;
+        const time = (Math.random() * 0.5) + 1.7;
+        bgImg.src = bgImgs[i % 5];
+        bgImg.style.top = imgY + 'vh';
+        bgImg.style.left = imgX + '%';
+        bgImg.classList.add('img-small');
+        bgImg.style.setProperty('--time', time + 's')
+        imgY += 43;
+        imgCont.appendChild(bgImg);
+    }
+});
