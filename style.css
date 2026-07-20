@@ -30,6 +30,7 @@ main {
 footer {
     position: relative;
     min-height: 200px;
+    padding-bottom: 200px;
     width: 100%;
     overflow: hidden;
 }
@@ -62,8 +63,17 @@ h2 {
     }
 }
 
-p {
+p, label, input {
     font-size: var(--size-1);
+}
+
+
+label {
+    display: grid;
+}
+
+textarea {
+    height: 10ex;
 }
 
 li {
@@ -92,6 +102,11 @@ section:last-of-type {
 .container {
     margin: 0 auto;
     width: min(90%, 960px);
+}
+
+.col {
+    display: grid;
+    gap: 4px;
 }
 
 .bowtie {
@@ -245,6 +260,7 @@ section:last-of-type {
     top: 0; bottom: -200px;
     width: 100%;
     overflow: hidden;
+    z-index: -3;
 }
 
 .what-li {
@@ -272,4 +288,23 @@ section:last-of-type {
 
 .layer-4 {
     z-index: 4;
+}
+
+.contact-form {
+    display: grid;
+    padding: 80px 0;
+    & > h2 {
+        line-height: 0.8;
+        margin-bottom: 0;
+    }
+}
+
+.button {
+    font-family: "Barriecito", system-ui;
+    font-weight: bold;
+    font-size: var(--size-2);
+    background-color: var(--clr-accent-2);
+    &:hover {
+        background-color: hsl(from var(--clr-accent-2) h s l / 0.4);
+    }
 }
