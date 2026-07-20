@@ -234,6 +234,13 @@ section:last-of-type {
     }
 }
 
+.img-cont {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 100vw;
+    overflow: hidden;
+}
+
 .what-li {
     display: grid;
     justify-content: center;
