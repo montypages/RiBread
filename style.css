@@ -63,7 +63,7 @@ h2 {
     }
 }
 
-p, label, input {
+p, label, input, textarea {
     font-size: var(--size-1);
 }
 
