@@ -38,3 +38,26 @@ document.addEventListener('DOMContentLoaded', () => {
         imgCont.appendChild(bgImg);
     }
 });
+
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const resultDisplay = document.getElementById('form-result');
+    
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+    };
+    
+    fetch('http://localhost:5000/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+    })
+    .then(async (response) => {
+        let json = await response.json();
+        resultDisplay.innerHTML = `<p style="color: ${response.ok ? 'green' : 'red'};">${json.message}</p>`;
+        if (response.ok) event.target.reset();
+    })
+    .catch(() => resultDisplay.innerHTML = '<p style="color: red;">Server connection error.</p>');
+});

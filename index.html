@@ -88,7 +88,7 @@
         <div class="container">
             <div class="contact-form bowtie" data-accent="red">
                 <h2>Contact</h2>
-                <form class="col" action="email" method="post">
+                <form class="col" action="email" method="post" id="contact-form">
                     <label for="name">
                         Name
                         <input type="text" name="name" id="name">
@@ -97,16 +97,13 @@
                         Email
                         <input type="email" name="email" id="email">
                     </label>
-                    <label for="subject">
-                        Subject
-                        <input type="text" name="subject" id="subject">
-                    </label>
                     <label for="message">
                         Message
                         <textarea name="message" id="message"></textarea>
                     </label>
                     <button class="button" type="submit">Send</button>
                 </form>
+                <div id="form-result"></div>
             </div>
         </div>
         <div class="img-cont">
