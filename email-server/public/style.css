@@ -72,10 +72,6 @@ label {
     display: grid;
 }
 
-textarea {
-    height: 10ex;
-}
-
 li {
     font-size: var(--size-1);
 }
