@@ -39,25 +39,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-document.getElementById('contact-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const resultDisplay = document.getElementById('form-result');
-    
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        message: document.getElementById('message').value
+const form = document.getElementById("contact-form");
+const status = document.getElementById("form-result");
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    status.textContent = "Sending...";
+
+    const formData = new FormData(form);
+
+    const data = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        message: formData.get("message")
     };
-    
-    fetch('http://localhost:5000/api/send-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-    })
-    .then(async (response) => {
-        let json = await response.json();
-        resultDisplay.innerHTML = `<p style="color: ${response.ok ? 'green' : 'red'};">${json.message}</p>`;
-        if (response.ok) event.target.reset();
-    })
-    .catch(() => resultDisplay.innerHTML = '<p style="color: red;">Server connection error.</p>');
+
+    try {
+        const response = await fetch("/contact", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+
+        const result = await response.json();
+
+        status.textContent = result.message;
+        status.style.color = result.success ? 'green' : 'red';
+
+        if (result.success) {
+            form.reset();
+        }
+
+    } catch (err) {
+        console.error(err);
+        status.textContent = "Network error. Please try again.";
+    }
 });
