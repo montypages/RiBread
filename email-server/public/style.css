@@ -65,6 +65,7 @@ h2 {
 
 p, label, input, textarea {
     font-size: var(--size-1);
+    font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
 }
 
 
